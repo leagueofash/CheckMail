@@ -5,7 +5,6 @@ from report import warning_box, collect_data
 
 
 def scan_urls(urls,sender_addr,api):
-    #api= "876b176d5abbb41a9a224cffe118f4337c577e60814af64ceffdad9d9b025c77"
     #print urls
     headers = {
         "Accept-Encoding": "gzip, deflate",
