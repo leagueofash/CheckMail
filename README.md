@@ -19,3 +19,14 @@ Requirements:
     https://community.mcafee.com/docs/DOC-6456
   Gmail Account
 
+Working
+
+ 1. https://github.com/leagueofash/CheckMail.git
+ 2. Go to CheckMail folder
+ 3. run the command
+        python get_mail.py
+        
+This would create a few folder and will contain all the documents! You might want to clean it up often to save the space and also do not open any documents expecially extracted_macro, extracted_data, and files from unzip_dir
+
+
+Work in Progress! needs more work and more analysis to detect more efficiently
