@@ -40,8 +40,9 @@ def get_first_text_block(email_message_instance, sender_addr, api_key):
     password = None
     types = ["doc","sheet","presentation"]
     maintype = email_message_instance.get_content_type()
-    #print maintype
-    #print len(email_message_instance)
+    
+    #parse the documents in the mail and saves them based on type! 
+    #since we are anlalyzing only pdf and macro we are looking for those types alone!
     for part in email_message_instance.walk():
         if part.get_content_type() == "text/plain":
             text = part.get_payload(decode=True)
@@ -68,6 +69,7 @@ def get_first_text_block(email_message_instance, sender_addr, api_key):
 
     return
 
+#License agreement
 def instruction():
     a =  "Welcome to Automated Mail Check!!\nLeave it to us to detect malicious mail and enjoy your mail worry free!!\n"
     b = "\n\nLicense Agreement Policy\n"
@@ -80,6 +82,7 @@ def instruction():
     else:
         exit(0)
 
+#Extracting the URL and password if any from the text body of the mail 
 def extract_text(text,sender_addr,api):
     password = None
     extractor=URLExtract()
@@ -94,6 +97,7 @@ def extract_text(text,sender_addr,api):
         password = fieldValues[0]
     return password
 
+#extract the PDF and save it in the extracted_data.pdf
 def extract_pdf(pdf_data):
     #print pdf_data
     fd = open("extracted_data.pdf","wb")
@@ -102,6 +106,7 @@ def extract_pdf(pdf_data):
     check_pdf()
     return True
 
+#extract macros
 def extract_data(data):
     #print sheet_data
     fd = open("extracted_macro", "wb")
@@ -109,6 +114,7 @@ def extract_data(data):
     fd.close()
     return True
 
+#UNZIP the file and store the zipped content for analysis
 def extract_zip(data, pwd):
     #print doc_data
     fd = open("extracted_data.zip", "wb")
@@ -141,6 +147,8 @@ def main():
     title = "Welcome to CheckMail"
     fieldNames = ["VirusTotal API key","Gmail Username", "Gmail Password", ]
     fieldValues = []
+    
+    #easygui box for password box to get the API key, gmail username and password!
     fieldValues = multpasswordbox(msg, title, fieldNames)
     emailid = fieldValues[1]
     password = fieldValues[2]
